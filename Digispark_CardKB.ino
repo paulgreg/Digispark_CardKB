@@ -1,19 +1,18 @@
 #include "DigiKeyboard.h"
-#include "TinyWireM.h"
+#include "Wire.h"
 
 #define CARDKB_ADDR 0x5F
 
 void setup() {
-    TinyWireM.begin();
+  delay(10);
+  Wire.begin();
 }
 
 void loop() {
-  TinyWireM.requestFrom(CARDKB_ADDR, 1);
-  while (TinyWireM.available())
-  {
-    char c = TinyWireM.read();
-    if (c != 0)
-    {
+  Wire.requestFrom(CARDKB_ADDR, 1);
+  while (Wire.available()) {
+    char c = Wire.read();
+    if (c != 0) {
       DigiKeyboard.print(c);
     }
   }
