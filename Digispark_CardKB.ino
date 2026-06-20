@@ -10,10 +10,13 @@ void setup() {
 
 void loop() {
   Wire.requestFrom(CARDKB_ADDR, 1);
-  while (Wire.available()) {
-    char c = Wire.read();
-    if (c != 0) {
+
+  if (Wire.available()) {
+   char c = Wire.read();
+    if (c) {
       DigiKeyboard.print(c);
     }
   }
+
+  DigiKeyboard.delay(5);
 }
